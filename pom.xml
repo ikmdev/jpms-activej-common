@@ -5,7 +5,7 @@
     <parent>
         <groupId>dev.ikm.build</groupId>
         <artifactId>parent</artifactId>
-        <version>1.55.0</version>
+        <version>1.57.0</version>
         <relativePath></relativePath>
     </parent>
 
@@ -13,7 +13,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>${core.artifact.version}-${core.artifact.release}</version>
+    <version>6.0-rc2-r1</version>
 
     <licenses>
         <license>
@@ -25,8 +25,7 @@
 
     <properties>
         <!-- change release here-->
-        <core.artifact.version>4.3</core.artifact.version>
-        <core.artifact.release>r8</core.artifact.release>
+        <core.artifact.version>6.0-rc2</core.artifact.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
