@@ -13,7 +13,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>6.0-rc2-r1-SNAPSHOT</version>
+    <version>4.3-r10</version>
 
     <licenses>
         <license>
@@ -25,7 +25,7 @@
 
     <properties>
         <!-- change release here-->
-        <core.artifact.version>6.0-rc2</core.artifact.version>
+        <core.artifact.version>4.3-r10</core.artifact.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
