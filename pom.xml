@@ -25,7 +25,7 @@
 
     <properties>
         <!-- change release here-->
-        <core.artifact.version>4.3-r10</core.artifact.version>
+        <core.artifact.version>4.3</core.artifact.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
