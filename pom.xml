@@ -13,7 +13,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>4.3-r10</version>
+    <version>4.3-r8</version>
 
     <licenses>
         <license>
