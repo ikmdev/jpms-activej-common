@@ -13,7 +13,7 @@
     <artifactId>activej-common</artifactId>
     <packaging>jar</packaging>
     <name>Activej Common</name>
-    <version>4.3-r8</version>
+    <version>6.0-rc2-r1-SNAPSHOT</version>
 
     <licenses>
         <license>
@@ -25,13 +25,30 @@
 
     <properties>
         <!-- change release here-->
-        <core.artifact.version>4.3</core.artifact.version>
+        <core.artifact.version>6.0-rc2</core.artifact.version>
+        <core.artifact.release>r1</core.artifact.release>
+        <jpms-activej-types.version>6.0-rc2-r1</jpms-activej-types.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
+    
+    <!-- transitive dependencies of the repackaged artifact -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>dev.ikm.jpms</groupId>
+                <artifactId>activej-types</artifactId>
+                <version>${jpms-activej-types.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
     <dependencies>
-        <!-- Has no transitive dependencies in this artifact -->
+        <dependency>
+            <groupId>dev.ikm.jpms</groupId>
+            <artifactId>activej-types</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -98,12 +115,12 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/activej-common-${core.artifact.version}-sources.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar</file>
                                     <type>jar</type>
                                     <classifier>sources</classifier>
                                 </artifact>
                                 <artifact>
-                                    <file>${project.build.directory}/dependency/activej-common-${core.artifact.version}-javadoc.jar</file>
+                                    <file>${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar</file>
                                     <type>jar</type>
                                     <classifier>javadoc</classifier>
                                 </artifact>
@@ -138,17 +155,18 @@
                                             requires org.slf4j;
                                             requires java.sql;
                                             exports io.activej.common;
-                                            exports io.activej.common.api;
+                                            exports io.activej.common.annotation;
+                                            exports io.activej.common.builder;
                                             exports io.activej.common.collection;
                                             exports io.activej.common.concurrent;
                                             exports io.activej.common.exception;
+                                            exports io.activej.common.function;
+                                            exports io.activej.common.initializer;
                                             exports io.activej.common.inspector;
-                                            exports io.activej.common.jmx;
                                             exports io.activej.common.recycle;
                                             exports io.activej.common.ref;
                                             exports io.activej.common.reflection;
                                             exports io.activej.common.service;
-                                            exports io.activej.common.sql;
                                             exports io.activej.common.time;
                                             exports io.activej.common.tuple;
                                         }
@@ -172,8 +190,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming sources file" />
-                                <copy file="${project.build.directory}/dependency/activej-common-${core.artifact.version}-sources.jar"
-                                      tofile="${project.build.directory}/activej-common-${project.version}-sources.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-sources.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${project.version}-sources.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -186,8 +204,8 @@
                         <configuration>
                             <target>
                                 <echo message="renaming javadoc file" />
-                                <copy file="${project.build.directory}/dependency/activej-common-${core.artifact.version}-javadoc.jar"
-                                      tofile="${project.build.directory}/activej-common-${project.version}-javadoc.jar" />
+                                <copy file="${project.build.directory}/dependency/${project.artifactId}-${core.artifact.version}-javadoc.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}-${project.version}-javadoc.jar" />
                             </target>
                         </configuration>
                     </execution>
@@ -197,7 +215,7 @@
                         <configuration>
                             <target>
                                 <echo message="unzipping files" />
-                                <unzip src="${project.build.directory}/moditect/activej-common-${core.artifact.version}.jar"
+                                <unzip src="${project.build.directory}/moditect/${project.artifactId}-${core.artifact.version}.jar"
                                        dest="${project.build.directory}/classes/" />
                             </target>
                         </configuration>
