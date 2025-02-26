@@ -27,6 +27,7 @@ jobs:
         with:
           token: ${{secrets.IKMDEVOPS_PAT_TOKEN}}
 
+
       - name: Verify Version
         run: |
             CURRENT_VERSION=$(./mvnw help:evaluate -D'expression=project.version' -q -D'forceStdout')
@@ -38,8 +39,19 @@ jobs:
                exit 1
             fi
 
+      - name: Extrapolate IKM Release Property
+        id: newDevVersion
+        run: |
+          CORE_VERSION=$(./mvnw help:evaluate -D'expression=core.artifact.version' -q -D'forceStdout')
+          RC_VERSION=$(./mvnw help:evaluate -D'expression=core.artifact.release' -q -D'forceStdout')
+          RC_NUMBER=$(echo "$RC_VERSION" | grep -o -E '[0-9]+')
+          NEW_RC_NUMBER=$((1 + $RC_NUMBER))
+          echo "DEV_VERSION=$CORE_VERSION-r$NEW_RC_NUMBER-SNAPSHOT" >> $GITHUB_OUTPUT
+
       - name: Shared Release Action
-        uses: ikmdev/maven-semver-release-action@v2
+        uses: ikmdev/maven-semver-release-action@main
         with:
           version_type: 'pre-release'
           github_token: ${{secrets.GITHUB_TOKEN}}
+          development_version: ${{steps.newDevVersion.outputs.DEV_VERSION}}
+            
