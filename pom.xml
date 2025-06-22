@@ -27,7 +27,7 @@
         <!-- change release here-->
         <core.artifact.version>6.0-rc2</core.artifact.version>
         <core.artifact.release>r3</core.artifact.release>
-        <jpms-activej-types.version>6.0-rc2-r1</jpms-activej-types.version>
+        <jpms-activej-types.version>6.0-rc2-r3</jpms-activej-types.version>
 
         <maven.moditect.plugin>1.2.2.Final</maven.moditect.plugin>
     </properties>
