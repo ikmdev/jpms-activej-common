@@ -49,7 +49,7 @@ jobs:
           echo "DEV_VERSION=$CORE_VERSION-r$NEW_RC_NUMBER-SNAPSHOT" >> $GITHUB_OUTPUT
 
       - name: Shared Release Action
-        uses: ikmdev/maven-semver-release-action@v2
+        uses: ikmdev/maven-semver-release-action@v2.7.0
         with:
           version_type: 'pre-release'
           github_token: ${{secrets.GITHUB_TOKEN}}
